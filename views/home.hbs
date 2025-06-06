@@ -1,18 +1,29 @@
-<h1>Productos</h1>
+{{!-- Contenedor principal para la página de inicio --}}
+<div class="container mt-4">
+    <h1 class="mb-4">Productos</h1>
 
-{{#each products}}
-    <div class="product">
-        <h2>{{this.name}} - {{this.brand}}</h2>
-        <p>Precio: ${{this.price}}</p>
-        <p>Descripción: {{this.shortDescription}}</p>
-        {{#if this.stock}}
-            <p>Stock: {{this.stock}}</p>
+    {{!-- Fila de Bootstrap para contener las tarjetas de productos --}}
+    {{!-- Se utiliza la clase 'gy-4' para agregar espaciado vertical (gutter) entre las tarjetas cuando se apilan en vistas móviles --}}
+    <div class="row gy-4">
+        {{#if products}}
+            {{#each products}}
+                {{!-- Renderiza el parcial 'productCard' para cada producto --}}
+                {{!-- Se pasa el contexto actual del producto (this) al parcial --}}
+                {{!-- Se invoca el parcial 'productCard'. La sintaxis de Handlebars {{> nombreDelParcial}} se utiliza para renderizar un parcial. --}}
+                {{!-- 'this' (el contexto actual) se pasa al parcial, lo que significa que dentro de 'productCard.hbs', 'this' se referirá al producto actual en la iteración. --}}
+                {{> productCard this}}
+            {{/each}}
         {{else}}
-            <p style="color: #777;">(Agotado)</p>
+            {{!-- Mensaje a mostrar si no hay productos disponibles --}}
+            <div class="col">
+                <p class="text-center">No hay productos disponibles en este momento.</p>
+                {{!-- La variable 'error' es opcional. Se recibe desde el controlador (controllers/frontend.js, función renderHome) --}}
+                {{!-- si ocurre un problema al intentar obtener la lista de productos (por ejemplo, un fallo en la API o base de datos). --}}
+                {{!-- Solo se mostrará este bloque si 'products' está vacío Y la variable 'error' está presente en el contexto. --}}
+                {{#if error}}
+                   <p class="text-center text-danger">{{error}}</p>
+                {{/if}}
+            </div>
         {{/if}}
-        {{#if this.freeShipping}}
-            <p><strong>Envío gratis</strong></p>
-        {{/if}}
-        <p><a href="/productos/{{this.id}}">Más información</a></p>
     </div>
-{{/each}}
+</div>

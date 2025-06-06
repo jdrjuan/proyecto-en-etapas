@@ -1,0 +1,29 @@
+{{!-- Parcial de Handlebars para mostrar una tarjeta de producto --}}
+<div class="product-card col-sm-6 col-lg-4 col-xxl-3" title="{{this.name}}">
+    <div class="product-card__container card h-100 text-bg-dark border-secondary shadow rounded-bottom-0">
+        <img
+            src="/img/products/no-pic.jpg"
+            class="product-card__image card-img-top"
+            alt="{{this.brand}} {{this.name}}"
+        />
+        <div class="product-card__body card-body d-flex flex-column">
+            <span
+                class="product-card__brand text-uppercase small"
+                style="color: #aaa;"
+            >
+                {{this.brand}}
+            </span>
+            <h2 class="product-card__title card-title fs-3 fw-lighter mt-1 mb-4">
+                {{{this.name}}}
+            </h2>
+            <p class="product-card__description card-text">{{{this.shortDescription}}}</p>
+            <p class="product-card__price card-text text-center mt-auto fs-4">
+                ${{this.price}}
+            </p>
+            {{!-- Botón "Ver más" que enlaza a la página de detalles del producto --}}
+            <a href="/products/{{this.id}}" class="btn btn-outline-light w-100" title="Ver más detalles de {{this.name}}">
+                Ver más
+            </a>
+        </div>
+    </div>
+</div>

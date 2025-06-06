@@ -4,6 +4,12 @@ import productsRouter from './routers/products.js';
 import frontendRouter from './routers/frontend.js';
 import config from './config.js';
 import { create } from 'express-handlebars';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Obtener __dirname en módulos ES
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -16,6 +22,9 @@ const hbs = create({
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 app.set('views', './views');
+
+// Servir archivos estáticos desde el directorio 'public'
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
 app.use(express.json());

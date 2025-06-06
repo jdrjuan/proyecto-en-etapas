@@ -1,0 +1,46 @@
+/* Estilos para la tarjeta de producto */
+.product-card {
+    cursor: default;
+    position: relative; /* Necesario si se quisieran agregar elementos posicionados absolutamente en el futuro, como badges */
+}
+
+.product-card__container {
+    overflow: hidden; /* Para asegurar que los bordes redondeados de la tarjeta se apliquen a la imagen si es necesario */
+}
+
+/* Estilos para la imagen del producto */
+.product-card__image {
+    background-color: #0d0d0d; /* Color de fondo oscuro para la imagen */
+    box-shadow: 0 0 100px 40px rgba(0, 0, 0, .8);
+
+    aspect-ratio: 700 / 390; /* Proporción de la imagen */
+    object-fit: cover; /* Asegura que la imagen cubra el área designada sin deformarse */
+
+    line-height: 3em; /* Para alinear texto verticalmente si la imagen no carga (aunque Bootstrap ya lo maneja) */
+    text-align: center; /* Para centrar texto si la imagen no carga */
+}
+
+/* Estilos para el cuerpo de la tarjeta */
+.product-card__body {
+    /* No se necesitan estilos específicos adicionales aquí por ahora, Bootstrap maneja el flex layout */
+}
+
+/* Estilo para la marca del producto. Si está vacío, :empty::before asegura que ocupe espacio y no colapse el layout. */
+.product-card__brand:empty::before {
+    content: '\00A0'; /* Espacio no rompible */
+}
+
+/* Estilos para el título del producto */
+.product-card__title {
+    /* Espacio para futuros estilos específicos del título si son necesarios */
+}
+
+/* Estilos para la descripción del producto */
+.product-card__description {
+    /* Espacio para futuros estilos específicos de la descripción si son necesarios */
+}
+
+/* Estilos para el precio del producto */
+.product-card__price {
+    /* Espacio para futuros estilos específicos del precio si son necesarios */
+}
