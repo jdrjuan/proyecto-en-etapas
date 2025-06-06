@@ -1,6 +1,13 @@
 import api from '../api/products.js';
 
 const renderHome = async (req, res) => {
+    // Definir menuLinks para el Navbar, marcando 'Inicio' como activo
+    const menuLinks = [
+        { url: '/', text: 'Inicio', isActive: req.path === '/' },
+        { url: '/nosotros', text: 'Nosotros', isActive: req.path === '/nosotros' },
+        { url: '/preguntas-frecuentes', text: 'Preguntas Frecuentes', isActive: req.path === '/preguntas-frecuentes' }
+    ];
+
     try {
         let products = await api.getAllProducts();
         if (!Array.isArray(products)) {
@@ -20,19 +27,46 @@ const renderHome = async (req, res) => {
                            // si bien el array original que los contiene api.getAllProducts
                            // no debería tener elementos null/undefined.
 
-        res.render('home', { title: 'Inicio', products: plainProducts });
+        res.render('home', { 
+            title: 'Inicio', 
+            products: plainProducts,
+            menuLinks: menuLinks // Pasar menuLinks a la vista
+        });
     } catch (error) {
         console.error("Error rendering home page:", error);
-        res.status(500).render('home', { title: 'Inicio', products: [], error: 'No se pudo obtener el listado de productos.' });
+        res.status(500).render('home', { 
+            title: 'Inicio', 
+            products: [], 
+            error: 'No se pudo obtener el listado de productos.',
+            menuLinks: menuLinks // Pasar menuLinks a la vista
+        });
     }
 };
 
 const renderAboutUs = (req, res) => {
-    res.render('aboutUs', { title: 'Nosotros' });
+    // Definir menuLinks para el Navbar, marcando 'Nosotros' como activo
+    const menuLinks = [
+        { url: '/', text: 'Inicio', isActive: req.path === '/' },
+        { url: '/nosotros', text: 'Nosotros', isActive: req.path === '/nosotros' },
+        { url: '/preguntas-frecuentes', text: 'Preguntas Frecuentes', isActive: req.path === '/preguntas-frecuentes' }
+    ];
+    res.render('aboutUs', { 
+        title: 'Nosotros',
+        menuLinks: menuLinks // Pasar menuLinks a la vista
+    });
 };
 
 const renderFaq = (req, res) => {
-    res.render('faq', { title: 'Preguntas frecuentes' });
+    // Definir menuLinks para el Navbar, marcando 'Preguntas Frecuentes' como activo
+    const menuLinks = [
+        { url: '/', text: 'Inicio', isActive: req.path === '/' },
+        { url: '/nosotros', text: 'Nosotros', isActive: req.path === '/nosotros' },
+        { url: '/preguntas-frecuentes', text: 'Preguntas Frecuentes', isActive: req.path === '/preguntas-frecuentes' }
+    ];
+    res.render('faq', { 
+        title: 'Preguntas frecuentes',
+        menuLinks: menuLinks // Pasar menuLinks a la vista
+    });
 };
 
 export default {

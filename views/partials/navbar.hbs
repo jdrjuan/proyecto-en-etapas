@@ -1,0 +1,39 @@
+{{!-- Parcial de Handlebars para la barra de navegación Bootstrap --}}
+<nav class="navbar navbar-expand-sm bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+        {{!-- Enlace de la marca/logo que lleva a la página de inicio --}}
+        <a class="navbar-brand" href="/">Proyecto</a>
+        
+        {{!-- Botón toggler para la navegación en dispositivos móviles --}}
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Alternar navegación"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        {{!-- Contenedor de los enlaces de navegación que se colapsará en móviles --}}
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {{!-- Iterar sobre la lista de enlaces del menú (menuLinks) pasada desde el controlador --}}
+                {{#each menuLinks}}
+                    <li class="nav-item">
+                        {{!-- Enlace de navegación. La clase 'active' se añade condicionalmente si this.isActive es true --}}
+                        <a
+                            class="nav-link {{#if this.isActive}}active{{/if}}"
+                            href="{{this.url}}"
+                            {{#if this.isActive}}aria-current="page"{{/if}} {{!-- Atributo para accesibilidad en el enlace activo --}}
+                        >
+                            {{this.text}}
+                        </a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</nav>

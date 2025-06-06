@@ -10,13 +10,9 @@
     <link rel="stylesheet" href="/css/productCard.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/nosotros">Nosotros</a></li>
-            <li><a href="/preguntas-frecuentes">Preguntas frecuentes</a></li>
-        </ul>
-    </nav>
+    {{!-- Se incluye el parcial de la barra de navegación --}}
+    {{!-- Se espera que los datos para el navbar (ej. menuLinks, currentPage) sean pasados por el controlador al renderizar la vista principal --}}
+    {{> navbar }}
     {{{body}}}
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
